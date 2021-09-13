@@ -33,7 +33,7 @@ time.sleep(0.5)
 kcw = KeyClipWriter(bufSize=20)
 consecFrames = 0
 
-# KNNsub = cv2.createBackgroundSubtractorKNN(dist2Threshold=200, detectShadows=True)
+
 MOGsub = cv2.createBackgroundSubtractorMOG2(varThreshold=200, detectShadows=True)
 
 # keep looping
@@ -47,10 +47,10 @@ while (vs.isOpened() == True):
 	if ret == True:
 		frame = imutils.resize(frame, width=600)
 		updateConsecFrames = True
-		knnsub = MOGsub.apply(frame[100:600, 0:600])
+		mogsub = MOGsub.apply(frame[100:600, 0:600])
 
 		# blur the frame
-		blurred = cv2.GaussianBlur(knnsub, (21, 21), 0)
+		blurred = cv2.GaussianBlur(mogsub, (21, 21), 0)
 
 		# perform
 		# a series of dilations and erosions to remove any small
